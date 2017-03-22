@@ -1,0 +1,18 @@
+Main Plot Points:
+	Lore :
+		Earth finds an oceanic planet in a nearby galaxy
+		Deploys an Orbital Oceanic Drop Module
+		Developed by NASA within 5 years after planet Dydusvad is discovered to explore it.
+		OODM Consists of a Pretzel- like craft that floats over the atmosphere of a planet. It also carries four FPV ships to explore the ocean. All personnel are cryofrozen because planet is 20 light years away. 
+		(Machinist) or (Radarman) Protagonist. His name is Chris Monaghan.
+		FPV Leviathan is submarine on which Monaghan finds himself.
+		Large labs in the subs for scientific research
+
+	Game Start:
+		Monaghan wakes up
+		Forces his way out of cryochamber
+		Red emergency lights are on.
+		Crates are smashed, stuff is destroyed, something clearly went wrong.
+		Something got into some of the cryo pods, smashed and bloodied.
+		Monaghan notices a wrench in a toolbelt lying nearby, picks them up
+		Toolbelt has 4 spaces and 1 weapon slot
