@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour {
 
     private bool isDPressed;
 
-    private bool canCrouch;
+    public Transform firePoint;
+    public GameObject bullet;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +31,6 @@ public class PlayerController : MonoBehaviour {
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
         isDPressed = Input.GetKey(KeyCode.D);
-        canCrouch = isGrounded & Input.GetKey(KeyCode.S);
     }
 	// Jump allows the player to jump based on a fixed value
     public void Jump()
@@ -44,15 +44,6 @@ public class PlayerController : MonoBehaviour {
         if (isGrounded)
         {
             doubleJump = false;
-        }
-
-        if (canCrouch)
-        {
-            GetComponent<BoxCollider2D>().= new Vector2(1.6f, 1.7517305f);
-        }
-        else
-        {
-            GetComponent<BoxCollider2D>().size = new Vector2(1.6f, 3.503461f);
         }
 
         //Binds the jump function to the W key, and checks if player is grounded
@@ -86,19 +77,24 @@ public class PlayerController : MonoBehaviour {
             //GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
             moveVelocity = -moveSpeed;
         }
+        // Binds shooting to the space key
+        if (Input.GetKeyDown(KeyCode.Space)){            
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+        } 
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity,GetComponent<Rigidbody2D>().velocity.y);
 
-        //Allows animations to switch when a fixed condition is met
+        //Declares conditions that affect animation transitions
         anim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
         anim.SetBool("Grounded", isGrounded);
         anim.SetBool("Is D Pressed", isDPressed);
         anim.SetBool("Double Jump", doubleJump);
-        anim.SetBool("Is Crouched", canCrouch);
+
         //Switches direction of player
         if (GetComponent<Rigidbody2D>().velocity.x > 0)
             transform.localScale = new Vector3(1f, 1f, 1f);
         else if (GetComponent<Rigidbody2D>().velocity.x < 0)
             transform.localScale = new Vector3(-1f, 1f, 1f);
+
     } 
 }

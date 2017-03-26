@@ -30,9 +30,11 @@ public class LevelManager : MonoBehaviour {
         StartCoroutine("respawnPlayerCo");
     }
 
-
+    // Determines what happens when the event that the player dies occurs
     public IEnumerator respawnPlayerCo()
     {
+        //Places death particles, disables the movement and visibility of the player, 
+        //And gives a respawn player message
         Instantiate(deathParticle, player.transform.position, player.transform.rotation);
         player.enabled = false;
         player.GetComponent<Renderer>().enabled = false;
@@ -40,6 +42,8 @@ public class LevelManager : MonoBehaviour {
         player.GetComponent<Rigidbody2D>().gravityScale = 0f;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Debug.Log("Player Respawn");
+
+        //Adds a delay between death and teleportation to previous checkpoint or spawn
         yield return new WaitForSeconds(respawnDelay);
         player.GetComponent<Rigidbody2D>().gravityScale = gravityStore;
         player.enabled = true;
