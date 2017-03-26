@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
         if (canCrouch)
         {
-            GetComponent<BoxCollider2D>().size = new Vector2(1.6f, 1.7517305f);
+            GetComponent<BoxCollider2D>().= new Vector2(1.6f, 1.7517305f);
         }
         else
         {
