@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 
     private Animator anim;
 
-    private bool isDPressed;
+    private bool isSpacePressed;
 
     public Transform firePoint;
     public GameObject bullet;
@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-        isDPressed = Input.GetKey(KeyCode.D);
     }
 	// Jump allows the player to jump based on a fixed value
     public void Jump()
@@ -80,14 +79,19 @@ public class PlayerController : MonoBehaviour {
         // Binds shooting to the space key
         if (Input.GetKeyDown(KeyCode.Space)){            
             Instantiate(bullet, firePoint.position, firePoint.rotation);
-        } 
+            isSpacePressed = true;
+        }
+        else
+        {
+            isSpacePressed = false;
+        }
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity,GetComponent<Rigidbody2D>().velocity.y);
 
         //Declares conditions that affect animation transitions
         anim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
         anim.SetBool("Grounded", isGrounded);
-        anim.SetBool("Is D Pressed", isDPressed);
+        anim.SetBool("Shooting", isSpacePressed);
         anim.SetBool("Double Jump", doubleJump);
 
         //Switches direction of player
